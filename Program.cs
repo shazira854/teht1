@@ -6,10 +6,18 @@ namespace Kotikirjasto
 
     class Book
     {
-        public string Name;
-        public string Author;
-        public int Year;
-        public string Genre;
+        public string Name { get; set; }
+        public string Author { get; set; }
+        public int Year { get; set; }
+        public string Genre { get; set; }
+
+        public Book(string name, string author, int year, string genre)
+        {
+            Name = name;
+            Author = author;
+            Year = year;
+            Genre = genre;
+        }
     }
 
 
@@ -59,20 +67,43 @@ namespace Kotikirjasto
         }
 
 
+    static void AddBook()
+    {
+        Console.Write("Kirjan nimi: ");
+        string name = Console.ReadLine();
 
-        static void AddBook()
+        Console.Write("Kirjoittaja: ");
+        string author = Console.ReadLine();
+
+        Console.Write("Julkaisuvuosi: ");
+        int year = int.Parse(Console.ReadLine());
+
+        Console.Write("Genre: ");
+        string genre = Console.ReadLine();
+
+        Book uusi = new Book(name, author, year, genre);
+        books.Add(uusi);
+
+        Console.WriteLine("Kirja lisatty!");
+    }
+
+
+    static void ShowBooks()
+    {
+        if (books.Count == 0)
         {
-            // teen taman myohemmin
-            Console.WriteLine("Tama ei toimi viela...");
+            Console.WriteLine("Ei kirjoja listalla.");
+            return;
         }
 
+        Console.WriteLine("Kaikki kirjat:");
 
-
-        static void ShowBooks()
+        foreach (Book b in books)
         {
-            // ei toimi viela
-            Console.WriteLine("Kirjoja ei nayteta viela...");
+            Console.WriteLine(b.Name + " - " + b.Author + " (" + b.Year + ") " + b.Genre);
         }
+    }
+   
 
 
     }
